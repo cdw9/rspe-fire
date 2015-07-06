@@ -1,0 +1,56 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="rspe.policy">
+
+  <!-- Set up z3c.autoinlcude to scan dependencies and plugins of this package -->
+  <includePlugins package="." />
+  <includeDependencies package="." />
+
+  <!-- Upgrades are handled via its own zcml file -->
+  <include file="upgrades.zcml"/>
+  
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="rspe.policy (default)"
+      directory="profiles/default"
+      description="Installation profile for rspe.policy"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="initial"
+      title="rspe.policy (initial)"
+      directory="profiles/initial"
+      description="Initial profile for rspe.policy"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="qa"
+      title="rspe.policy (qa)"
+      directory="profiles/qa"
+      description="Configuration profile specifcally for QA instances of rspe.policy"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="rspe.policy: default"
+      title="rspe.policy: Various steps"
+      description="Setup handlers for rspe.policy"
+      handler="rspe.policy.setuphandlers.importVarious">
+    <depends name="content"/>
+  </genericsetup:importStep>
+
+  <genericsetup:importStep
+      name="rspe.policy: initial"
+      title="rspe.policy: Various Initial steps"
+      description="Initial Setup handlers for rspe.policy"
+      handler="rspe.policy.setuphandlers.importVariousInitial">
+    <depends name="content"/>
+  </genericsetup:importStep>
+
+</configure>

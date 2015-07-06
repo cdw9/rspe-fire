@@ -1,0 +1,173 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+    
+<metal:title fill-slot="content-title" />
+
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+    
+    <h1>
+        <tal:title content="context/Title" />
+        (<tal:types repeat="property context/property_type"><tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma></tal:types>)
+    </h1>
+        
+    
+    <dl class="enableFormTabbing">
+        <dt id="fieldsetlegend-default">Primary</dt>
+        <dd id="fieldset-default">
+            <tal:val content="context/address" />, <tal:val content="context/zip_code|nothing" />
+    
+            <h3>Occupants</h3>
+            <tal:val content="context/adult_occupants" /> adults<br />
+            <tal:val content="context/children_occupants" /> children<br />
+            <tal:val content="context/elderly_occupants" /> elderly<br />
+            
+            <tal:con condition="context/special_needs">
+                Special Needs: <tal:val content="context/special_needs" />
+            </tal:con>
+            
+            <tal:con condition="context/lessor">
+                Lessor: <tal:val content="context/lessor" />
+            </tal:con>
+            
+            <h4>Contacts</h4>
+            <tal:val content="context/contact_1_name" />
+            <tal:val content="context/contact_1_number" /><br />
+            <tal:val content="context/contact_2_name" />
+            <tal:val content="context/contact_2_number" />
+    
+            <h3>Main Building</h3>
+            <tal:types repeat="property context/property_type">
+                <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+            </tal:types>
+            <tal:val content="context/property_information" /><br />
+            <tal:val content="context/square_footage" />sq. ft.,
+            <tal:con condition="context/multi_level">Multi-Level</tal:con>,
+            <tal:con condition="context/basement">Basement</tal:con>
+            <tal:con condition="context/basement_exterior_entrance"> with exterior entrance</tal:con><br />
+            Built in <tal:val content="context/year_built" />
+            <tal:con condition="context/additions">, with additions</tal:con><br />
+            <tal:types repeat="property context/construction_type">
+                <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+            </tal:types>
+            
+            <tal:con condition="context/business">
+                Business information:
+                <tal:val content="context/business_information" />
+            </tal:con>
+            
+            <tal:garage condition="context/garage">
+                <h3>Garage</h3>
+                <tal:con condition="context/garage_attached">Attached</tal:con>
+                <tal:con condition="not:context/garage_attached">Detached</tal:con><br />
+                
+                <tal:con condition="context/garage_heated">
+                    Heated with
+                    <tal:types repeat="property context/garage_heat_type">
+                        <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+                    </tal:types>
+                </tal:con>
+            </tal:garage>
+    
+            <h3>Safety</h3>
+            <table class="plain">
+            <tr>
+                <td>Operational Smoke Detectors</td>
+                <td><tal:con condition="context/operational_smoke_detectors">X</tal:con></td>
+            </tr>
+            <tr>
+                <td>CO Detectors</td>
+                <td><tal:con condition="context/co_detectors">X</tal:con></td>
+            </tr>
+            <tr>
+                <td>Automated Alarm System</td>
+                <td><tal:con condition="context/automated_alarm_system">X</tal:con></td>
+            </tr>
+            <tr>
+                <td>Sprinkler System</td>
+                <td><tal:con condition="context/sprinkler_system">X</tal:con></td>
+            </tr>
+            </table>
+            
+            <tal:water condition="context/water_supply">
+                <h3>Water Supply</h3>
+                <tal:types repeat="property context/water_supply_type">
+                    <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+                </tal:types>
+                <tal:val content="context/water_supply_size" /> gallons<br />
+                <tal:con condition="context/water_supply_access">Access for fire trucks available</tal:con>
+                <tal:con condition="not:context/water_supply_access">Not accessible to fire trucks</tal:con>
+            </tal:water>
+            
+            <h3>Additional Information</h3>
+            <tal:val content="context/large_trucks_prohibited" />
+            <tal:val content="structure context/special_concerns_text/raw" />
+            
+            <p>Information provided by: <tal:val content="context/submitter" /></p>
+        </dd>
+    
+        <dt id="fieldsetlegend-utilities">Utilities</dt>
+        <dd id="fieldset-utilities">
+            <tal:types repeat="property context/type_of_heat">
+                <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+            </tal:types>
+            
+            <h3>Electrical</h3>
+            Electrical Provider: <tal:val content="context/electrical_provider" /><br />
+            Shut off location: <tal:val content="context/electrical_shut_off_location" />
+            
+            <tal:con condition="context/automatic_backup_generator">
+                <h3>Generator</h3>
+                Transfer switch:
+                <tal:types repeat="property context/generator_transfer_switch">
+                    <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+                </tal:types><br />
+                Location: <tal:val content="context/generator_location" />
+            </tal:con>
+            
+            <h3>Gas</h3>
+            Gas Provider: <tal:val content="context/gas_provider" /><br />
+            <tal:con condition="context/gas_shut_off_valve">
+                Shut off valve location:
+                <tal:val content="context/gas_shut_off_valve_location" />
+            </tal:con>
+            <tal:con condition="not:context/gas_shut_off_valve">
+                No shut off available
+            </tal:con>
+            
+            <h3>LP</h3>
+            Tank location: <tal:val content="context/lp_tank_location" />
+            
+            <h3>Backup</h3>
+            <tal:val content="context/backup_power_storage" />
+        </dd>
+    
+        <dt id="fieldsetlegend-outbuildings">Outbuildings</dt>
+        <dd id="fieldset-outbuildings">
+            Concerns:
+            <tal:types repeat="property context/special_concerns">
+                <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+            </tal:types><br />
+            Diesel storage: <tal:val content="context/diesel_storage_size" /> gallons<br />
+            Gasoline storage: <tal:val content="context/gasoline_storage_size" /> gallons<br />
+            Natural Gas to buildings: <tal:val content="context/natural_gas_to_buildings" /><br />
+            Natural Gas shutoff: <tal:val content="context/natural_gas_shut_off" /><br />
+            LP Gas to buildings: <tal:val content="context/lp_gas_to_buildings" /><br />
+            Secondary LP shutoff: <tal:val content="context/lp_tank_location_secondary" /><br />
+            Secondary LP size: <tal:val content="context/lp_tank_size_secondary" /> gallons
+        </dd>
+    </dl>
+    
+    
+    </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>
+

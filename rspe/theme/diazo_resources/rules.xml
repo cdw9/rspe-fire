@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <!-- Apply the following rules to standard Plone pages -->
+    <rules css:if-content="#visual-portal-wrapper">
+        
+        <rules css:if-not-content=".template-login_success">
+            <notheme if="$ajax_load" css:if-not-content=".template-login_failed"/>
+        </rules>
+        <notheme if-path="folder_rename_form" />
+        <theme href="index.html" />
+
+        <!-- Replace title with Plone's page title  -->
+        <replace css:theme="html head title" css:content="html head title" />
+
+        <!-- Drop the favicon spec coming from content; we'll use the one in the theme. -->
+        <drop content="/html/head/link[@rel='shortcut icon']" />
+
+        <!-- Copy base tag from Plone -->
+        <before css:theme-children="html head" css:content="html head base" />
+
+        <!-- Copy link, style, meta tags from Plone head -->
+        <after css:theme-children="html head"
+               content="/html/head/link | /html/head/style | /html/head/meta" />
+        <after css:theme-children="html head" css:content="html head script" />
+
+        <!-- merge classes from Plone body with theme body -->
+        <merge attributes="class" css:theme="body" css:content="body" />
+
+        <!-- Header -->
+        <replace css:theme="#portal-personaltools-wrapper" css:content="#portal-personaltools-wrapper"/>
+        
+        <replace css:theme="#portal-siteactions" css:content="#portal-siteactions"/>
+        <replace css:theme="#portal-searchbox" css:content="#portal-searchbox"/>
+        <drop css:content="#portal-searchbox .searchSection"/>
+        
+        <copy attributes="href" css:theme="#portal-logo" css:content="#portal-logo"/>
+        <replace css:theme="#portal-logo img">
+            <img src="{$portal_url}/++theme++rspe.theme/images/logo.png" alt="RSP&amp;E Fire District" />
+        </replace>
+        <replace css:theme-children="#portal-globalnav">
+            <xsl:apply-templates css:select="#portal-globalnav > li"/>
+        </replace>
+        <drop attributes="title" css:content="#portal-globalnav a"/>
+        <drop css:content="#portal-globalnav a img"/>
+        <drop css:content=".portletNavigationTree a img"/>
+        <drop css:content="#portaltab-index_html"/>
+        
+        <after css:theme="#portal-globalnav" css:content="#portal-breadcrumbs"/>
+        <drop css:content="#breadcrumbs-you-are-here"/>
+        <replace css:content-children=".breadcrumbSeparator" method="raw">&gt;</replace>
+        
+        <before css:theme="#portal-columns" css:content="#edit-bar"/>
+        
+        <!-- columns -->
+        <rules css:if-content="#portal-column-one">
+            <rules css:if-content="#portal-column-two">
+                <after css:theme-children=".col3.content"
+                       css:content-children="#content" />
+                <after css:theme-children=".col3.left"
+                       css:content-children="#portal-column-one"/>
+                <after css:theme-children=".col3.right"
+                       css:content-children="#portal-column-two"/>
+                <drop css:theme=".colr2, .coll2, .col1, .caseDetail"/>
+            </rules>
+            <rules css:if-not-content="#portal-column-two">
+                <after css:theme-children=".coll2.content"
+                       css:content-children="#content" />
+                <after css:theme-children=".coll2.left"
+                       css:content-children="#portal-column-one"/>
+                <drop css:theme=".col3, .colr2, .col1, .caseDetail"/>
+            </rules>
+        </rules>
+        <rules css:if-content="#portal-column-two">
+            <rules css:if-not-content="#portal-column-one">
+                <after css:theme-children=".colr2.content"
+                       css:content-children="#content" />
+                <after css:theme-children=".colr2.right"
+                       css:content-children="#portal-column-two"/>
+                <drop css:theme=".col3, .coll2, .col1, .caseDetail"/>
+            </rules>
+        </rules>
+        <rules css:if-not-content="#portal-column-two">
+            <rules css:if-not-content="#portal-column-one">
+                <after css:theme-children=".col1.content"
+                       css:content-children="#content" />
+                <drop css:theme=".col3, .coll2, .colr2, .caseDetail"/>
+            </rules>
+        </rules>
+        
+        <replace css:theme="#portal-footer" css:content="#portal-footer"/>
+    </rules>
+
+</rules>

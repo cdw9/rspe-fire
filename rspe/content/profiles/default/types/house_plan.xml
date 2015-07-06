@@ -1,0 +1,430 @@
+<?xml version="1.0"?>
+<object name="house_plan" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title" i18n:translate="">House Plan</property>
+ <property name="description" i18n:translate="">None</property>
+ <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+ <property name="factory">house_plan</property>
+ <property
+    name="add_view_expr">string:${folder_url}/++add++house_plan</property>
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+  <element value="Image"/>
+ </property>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">house_plan</property>
+ <property name="view_methods">
+  <element value="house_plan"/>
+  <element value="view"/>
+ </property>
+ <property name="default_view_fallback">False</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
+ <property name="klass">plone.dexterity.content.Container</property>
+ <property name="behaviors">
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+ </property>
+ <property name="schema"></property>
+ <property
+    name="model_source">&lt;model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    &lt;schema&gt;
+      &lt;field name="submitter" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;The person that filled out the Information report, in the Name field&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Submitter&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="address" type="zope.schema.TextLine"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;911 Address&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="zip_code" type="zope.schema.TextLine"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;True&lt;/required&gt;
+        &lt;title&gt;Zip Code&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="adult_occupants" type="zope.schema.Int"&gt;
+        &lt;description&gt;Number of adults in the house&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Adult Occupants&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="children_occupants" type="zope.schema.Int"&gt;
+        &lt;description&gt;Number of children in the house&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Children Occupants&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="elderly_occupants" type="zope.schema.Int"&gt;
+        &lt;description&gt;Number of elderly persons in the house&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Elderly Occupants&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="special_needs" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;If occupants have any special needs, explain here&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Special Needs&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="contact_1_name" type="zope.schema.TextLine"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Contact 1 Name&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="contact_1_number" type="zope.schema.TextLine"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Contact 1 Number&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="contact_2_name" type="zope.schema.TextLine"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Contact 2 Name&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="contact_2_number" type="zope.schema.TextLine"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Contact 2 Number&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="property_type" type="zope.schema.Set"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Property Type&lt;/title&gt;
+        &lt;value_type type="zope.schema.Choice"&gt;
+          &lt;values&gt;
+            &lt;element&gt;Residence&lt;/element&gt;
+            &lt;element&gt;Business&lt;/element&gt;
+            &lt;element&gt;Farm Operation&lt;/element&gt;
+            &lt;element&gt;Rental Property&lt;/element&gt;
+            &lt;element&gt;Other&lt;/element&gt;
+          &lt;/values&gt;
+        &lt;/value_type&gt;
+      &lt;/field&gt;
+      &lt;field name="lessor" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;If this is a rental property, name of the current Lessor&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Lessor&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="property_information" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;If property type is "other", provide more information here&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Property Information&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="square_footage" type="zope.schema.Int"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Square Footage&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="multi_level" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if house has more than one floor&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Multi-level&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="basement" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the building has a basement&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Basement&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="year_built" type="zope.schema.Date"&gt;
+        &lt;description&gt;Approximate year of the original construction&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Year Built&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="additions" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the building has had additions&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Additions&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="construction_type" type="zope.schema.Set"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Construction Type&lt;/title&gt;
+        &lt;value_type type="zope.schema.Choice"&gt;
+          &lt;values&gt;
+            &lt;element&gt;Wood Frame&lt;/element&gt;
+            &lt;element&gt;Prefab&lt;/element&gt;
+            &lt;element&gt;Steel Frame&lt;/element&gt;
+            &lt;element&gt;Concrete/Masonry&lt;/element&gt;
+          &lt;/values&gt;
+        &lt;/value_type&gt;
+      &lt;/field&gt;
+      &lt;field name="basement_sleeping_area" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the basement has a sleeping area&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Basement Sleeping Area&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="basement_exterior_entrance" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the basement has an exterior entrance&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Basement Exterior Entrance&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="garage" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the house has a garage&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Garage&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="garage_attached" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the garage is attached&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Garage Attached&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="garage_heated" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the garage is heated&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Garage Heated&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="garage_heat_type" type="zope.schema.Set"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Garage Heat Type&lt;/title&gt;
+        &lt;value_type type="zope.schema.Choice"&gt;
+          &lt;values&gt;
+            &lt;element&gt;LP&lt;/element&gt;
+            &lt;element&gt;Natural Gas&lt;/element&gt;
+            &lt;element&gt;Wood&lt;/element&gt;
+            &lt;element&gt;Other&lt;/element&gt;
+          &lt;/values&gt;
+        &lt;/value_type&gt;
+      &lt;/field&gt;
+      &lt;field name="business" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if any type of business is operated in the residence&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Business&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="business_information" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;Details of the business operated in the residence&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Business Information&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="operational_smoke_detectors" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the residence has operational smoke detectors&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Operational Smoke Detectors&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="co_detectors" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the residence has CO Detector(s)&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;CO Detectors&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="automated_alarm_system" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the residence has an automated fire alarm system&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Automated Alarm System&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="sprinkler_system" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if the building has a sprinkler system&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Sprinkler System&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="water_supply" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if there is a nearby water supply for fire-fighting&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Water Supply&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="water_supply_type" type="zope.schema.Set"&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Water Supply Type&lt;/title&gt;
+        &lt;value_type type="zope.schema.Choice"&gt;
+          &lt;values&gt;
+            &lt;element&gt;Pool&lt;/element&gt;
+            &lt;element&gt;Wall or Large Capacity Pump&lt;/element&gt;
+            &lt;element&gt;Lagoon, Pond, or Lake&lt;/element&gt;
+          &lt;/values&gt;
+        &lt;/value_type&gt;
+      &lt;/field&gt;
+      &lt;field name="water_supply_size" type="zope.schema.Int"&gt;
+        &lt;description&gt;Size in gallons of the pool&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Water Supply Size&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="water_supply_access" type="zope.schema.Bool"&gt;
+        &lt;description&gt;True if there is year-round access for fire trucks&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Water Supply Access&lt;/title&gt;
+        &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+      &lt;/field&gt;
+      &lt;field name="large_trucks_prohibited" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;If the roadway or driveway prohibits access of large trucks, provide information&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Large Trucks Prohibited&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="special_concerns_text" type="plone.app.textfield.RichText"&gt;
+        &lt;description&gt;Provide information about special concerns or hazards not already mentioned&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Special Concerns&lt;/title&gt;
+      &lt;/field&gt;
+      
+      &lt;fieldset name="utilities" label="Utilities" description="Information about the utilities provided"&gt;
+          &lt;field name="electrical_provider" type="zope.schema.TextLine"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Electrical Provider&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="electrical_shut_off_location" type="zope.schema.TextLine"&gt;
+            &lt;description&gt;Location of the electrical shut off or meter box&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Electrical Shut Off Location&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="automatic_backup_generator" type="zope.schema.Bool"&gt;
+            &lt;description&gt;True if the building has an automatic backup generator&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Automatic Backup Generator&lt;/title&gt;
+            &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+          &lt;/field&gt;
+          &lt;field name="generator_transfer_switch" type="zope.schema.Set"&gt;
+            &lt;description&gt;If there is an automatic generator, type of transfer switch&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Generator Transfer Switch&lt;/title&gt;
+            &lt;value_type type="zope.schema.Choice"&gt;
+              &lt;values&gt;
+                &lt;element&gt;No switch&lt;/element&gt;
+                &lt;element&gt;Automatic switch&lt;/element&gt;
+                &lt;element&gt;Manual switch&lt;/element&gt;
+              &lt;/values&gt;
+            &lt;/value_type&gt;
+          &lt;/field&gt;
+          &lt;field name="generator_location" type="zope.schema.TextLine"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Generator Location&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="type_of_heat" type="zope.schema.Set"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Type of Heat&lt;/title&gt;
+            &lt;value_type type="zope.schema.Choice"&gt;
+              &lt;values&gt;
+                &lt;element&gt;LP&lt;/element&gt;
+                &lt;element&gt;Natural Gas&lt;/element&gt;
+                &lt;element&gt;Wood&lt;/element&gt;
+                &lt;element&gt;Electric&lt;/element&gt;
+                &lt;element&gt;Solar/Geo-Thermal&lt;/element&gt;
+                &lt;element&gt;Wood Stove&lt;/element&gt;
+                &lt;element&gt;Fireplace&lt;/element&gt;
+              &lt;/values&gt;
+            &lt;/value_type&gt;
+          &lt;/field&gt;
+          &lt;field name="gas_provider" type="zope.schema.TextLine"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Gas Provider&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="gas_shut_off_valve" type="zope.schema.Bool"&gt;
+            &lt;description&gt;True if there is a shut-off valve for the gas&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Gas Shut-Off Valve&lt;/title&gt;
+            &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+          &lt;/field&gt;
+          &lt;field name="gas_shut_off_valve_location" type="zope.schema.TextLine"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Gas Shut-Off Valve Location&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="lp_tank_location" type="zope.schema.TextLine"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;LP Tank Location&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="backup_power_storage" type="zope.schema.Bool"&gt;
+            &lt;description&gt;True if there is solar or battery backup power storage&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Backup Power Storage&lt;/title&gt;
+            &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+          &lt;/field&gt;
+      &lt;/fieldset&gt;
+      &lt;fieldset name="outbuildings" label="Outbuildings"&gt;
+          &lt;field name="special_concerns" type="zope.schema.Set"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Special Concerns&lt;/title&gt;
+            &lt;value_type type="zope.schema.Choice"&gt;
+              &lt;values&gt;
+                &lt;element&gt;Machine Shed&lt;/element&gt;
+                &lt;element&gt;On Farm Chemical Storage&lt;/element&gt;
+                &lt;element&gt;Utility/Maintenance Shed&lt;/element&gt;
+                &lt;element&gt;Diesel Fuel Storage&lt;/element&gt;
+                &lt;element&gt;Gasoline Storage&lt;/element&gt;
+                &lt;element&gt;Livestock Confinement&lt;/element&gt;
+                &lt;element&gt;Livestock Waste Pit&lt;/element&gt;
+                &lt;element&gt;Harvester Type Storage&lt;/element&gt;
+                &lt;element&gt;Grain Facility&lt;/element&gt;
+                &lt;element&gt;Grain Dryer Bin&lt;/element&gt;
+                &lt;element&gt;Continuous Flow Grain Dryer&lt;/element&gt;
+                &lt;element&gt;Ammunition, Black Powder, or Reloading Supplies&lt;/element&gt;
+                &lt;element&gt;Home Oxygen Bottles&lt;/element&gt;
+                &lt;element&gt;&lt;/element&gt;
+              &lt;/values&gt;
+            &lt;/value_type&gt;
+          &lt;/field&gt;
+          &lt;field name="diesel_storage_size" type="zope.schema.Int"&gt;
+            &lt;description&gt;Size of diesel storage in gallons&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Diesel Storage Size&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="gasoline_storage_size" type="zope.schema.Int"&gt;
+            &lt;description&gt;Size of gasoline storage in gallons&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Gasoline Storage Size&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="natural_gas_to_buildings" type="zope.schema.Bool"&gt;
+            &lt;description&gt;True if there is natural gas to the grain dryer and/or buildings&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Natural Gas to Buildings&lt;/title&gt;
+            &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+          &lt;/field&gt;
+          &lt;field name="natural_gas_shut_off" type="zope.schema.TextLine"&gt;
+            &lt;description&gt;Location of the natural gas shut-off&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;Natural Gas Shut Off&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="lp_gas_to_buildings" type="zope.schema.Bool"&gt;
+            &lt;description&gt;True if there is LP gas to the grain dryer and/or buildings&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;LP Gas to Buildings&lt;/title&gt;
+            &lt;form:widget type="z3c.form.browser.radio.RadioFieldWidget"/&gt;
+          &lt;/field&gt;
+          &lt;field name="lp_tank_location_secondary" type="zope.schema.TextLine"&gt;
+            &lt;description/&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;LP Tank Location (secondary)&lt;/title&gt;
+          &lt;/field&gt;
+          &lt;field name="lp_tank_size_secondary" type="zope.schema.Int"&gt;
+            &lt;description&gt;Size in gallons of the secondary LP tank&lt;/description&gt;
+            &lt;required&gt;False&lt;/required&gt;
+            &lt;title&gt;LP Tank Size (secondary)&lt;/title&gt;
+          &lt;/field&gt;
+      &lt;/fieldset&gt;
+    &lt;/schema&gt;
+  &lt;/model&gt;</property>
+ <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="@@edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    description="" icon_expr="" link_target="" url_expr="string:${object_url}"
+    visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    description="" icon_expr="" link_target=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

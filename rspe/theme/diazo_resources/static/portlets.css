@@ -1,0 +1,194 @@
+/* @group Portlets */
+
+.portlet {
+    margin: 0 0 1em;
+}
+.portletError {
+    background-color: #FFA500;
+}
+
+.portlet dt,
+.portletHeader {
+    padding: 16px 16px 0;
+    line-height: normal;
+    font-size: 26px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+.portlet dt.hiddenStructure {
+    padding: 0;
+}
+
+.portlet dt a:link,
+.portlet dt a:visited,
+.portlet dt a:hover {
+    color: black;
+    display: block;
+    border: none;
+}
+
+.portlet .portletItem,
+.portlet .portletFooter,
+.portletError dd,
+.portletItem {
+    padding: 16px;
+    font-size: 16px;
+}
+
+.blockedPortlet .portletHeader {
+    border: 1px dashed #ddd;
+    margin: -1px;
+    background: none !important;
+}
+
+.blockedPortlet .portletHeader a {
+    color: #666;
+}
+
+.blockedPortlet .portletBlockedMessage {
+    color: white;
+    display: inline;
+}
+
+.portletItemDetails {
+	line-height: 1.5em;
+    display: block;
+}
+
+#portlet-prefs a {
+    border: none;
+    line-height: 2em;
+}
+
+/* @end */
+
+
+/* @group Navigation portlet */
+.portletNavigationTree {
+    background-color: #3870b5;
+    border: 1px solid #a8d4d9;
+    border-bottom: none;
+}
+.portletNavigationTree a:link,
+.portletNavigationTree a:visited {
+    border: none;
+    display: block;
+    zoom: 1;
+    color: #ffffff;
+    font-weight: normal;
+    line-height: 1.25em !important;
+    padding-left: 0;
+    background: none !important;
+    font-size: 15px;
+}
+.portletNavigationTree a:hover {
+    text-decoration: underline;
+}
+.portletNavigationTree .portletItem {
+    padding: 0;
+}
+.portletNavigationTree .navTreeTopNode a:link,
+.portletNavigationTree .navTreeTopNode a:visited {
+    font-family: Arial, sans-serif;
+    color: #ffd200;
+    font-size: 26px;
+    font-weight: 700;
+}
+.portlet .navTreeLevel0 > .navTreeItem {
+    padding: 13px 11px;
+    border-bottom: 1px solid #a8d4d9;
+    margin-bottom: 0;
+}
+.portletNavigationTree .navTreeLevel0 ul {
+    margin: 1em 0 0 1em;
+}
+.portlet .navTree .navTreeCurrentItem {
+    color: #ffd200;
+}
+
+/* @end */
+
+/* static text portlet */
+.portletStaticText {
+    background-color: #d2e5fd;
+}
+
+/* news portlet */
+.portletNews {
+    background-color: #ffefa3;
+}
+
+/* @group Calendar portlet */
+
+.portletCalendar {
+    margin: 1px 0 1em 0;
+}
+
+.portletCalendar dt {
+    background-color: #eee;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.6em;
+    border-bottom: none;
+}
+
+#visual-portal-wrapper .portletCalendar dd {
+    padding: 0;
+}
+
+.portletCalendar dd {
+    margin: 0;
+    padding: 0;
+}
+
+.portletCalendar dt a#calendar-previous {
+    float: left;
+    padding: 0 1em;
+    margin: 0 -.5em;
+}
+
+.portletCalendar dt a#calendar-next {
+    float: right;
+    padding: 0 1em;
+    margin: 0 -.5em;
+}
+
+.portletCalendar a, .portletCalendar a:focus,
+.portletCalendar a, .portletCalendar a:hover,
+.ploneCalendar a {
+    text-decoration: none;
+    border-bottom: none !important;
+}
+
+.ploneCalendar {
+    border-spacing: 0;
+    width:100%;
+}
+
+.ploneCalendar td {
+    background-color: transparent;
+    width: 14%;
+    text-align: center;
+    padding: 2px;
+}
+
+.ploneCalendar .weekdays th {
+    background-color: #eee;
+    text-align: center;
+    padding: 2px;
+}
+
+.ploneCalendar .event {
+    background-color: #eee;
+}
+
+.ploneCalendar .todayevent {
+    background-color: #eee;
+    border: 2px solid #205C90;
+}
+
+.ploneCalendar .todaynoevent {
+    border: 2px solid #205C90;
+}
+
+/* @end */

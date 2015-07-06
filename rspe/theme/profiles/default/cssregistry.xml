@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<object name="portal_css">
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/reset.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-before="*"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/public.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/reset.css"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/base.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/public.css"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/portlets.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/base.css"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/member.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/portlets.css"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/forms.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/member.css"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/controlpanel.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/forms.css"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/columns.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/controlpanel.css"
+      applyPrefix="False"/>
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/authoring.css"
+      media="screen" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" insert-after="++theme++rspe.theme/static/columns.css"
+      applyPrefix="False"/>
+      
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/print.css"
+      media="print" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" applyPrefix="False" />
+  
+    <stylesheet title=""
+       id="++theme++rspe.theme/static/main.css"
+       media="screen" rel="stylesheet" rendering="link"
+       cacheable="True" compression="safe" cookable="True"
+       enabled="1" expression="request/HTTP_X_THEME_ENABLED"
+       applyPrefix="True" insert-after="*"/>
+       
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/responsive.css"
+      media="" rel="stylesheet" rendering="link"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="request/HTTP_X_THEME_ENABLED"
+      applyPrefix="True" insert-after="*"/>
+   
+   <stylesheet id="ploneCustom.css" insert-after="*"/>
+ 
+</object>
