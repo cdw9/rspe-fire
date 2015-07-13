@@ -31,15 +31,15 @@
  <property
     name="model_source">&lt;model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
     &lt;schema&gt;
-      &lt;field name="submitter" type="zope.schema.TextLine"&gt;
-        &lt;description&gt;The person that filled out the Information report, in the Name field&lt;/description&gt;
-        &lt;required&gt;False&lt;/required&gt;
-        &lt;title&gt;Submitter&lt;/title&gt;
-      &lt;/field&gt;
       &lt;field name="address" type="zope.schema.TextLine"&gt;
         &lt;description/&gt;
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;911 Address&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="submitter" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;The person that filled out the Information report, in the Name field&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Submitter&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="zip_code" type="zope.schema.TextLine"&gt;
         &lt;description/&gt;
@@ -61,7 +61,7 @@
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Elderly Occupants&lt;/title&gt;
       &lt;/field&gt;
-      &lt;field name="special_needs" type="zope.schema.TextLine"&gt;
+      &lt;field name="special_needs" type="zope.schema.Text"&gt;
         &lt;description&gt;If occupants have any special needs, explain here&lt;/description&gt;
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Special Needs&lt;/title&gt;

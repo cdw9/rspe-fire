@@ -13,7 +13,7 @@
     <metal:content-core define-macro="content-core">
     
     <h1>
-        <tal:title content="context/Title" />
+        <tal:title content="context/Title" /> - <tal:val content="context/zip_code|nothing" /><br />
         (<tal:types repeat="property context/property_type"><tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma></tal:types>)
     </h1>
         
@@ -21,48 +21,69 @@
     <dl class="enableFormTabbing">
         <dt id="fieldsetlegend-default">Primary</dt>
         <dd id="fieldset-default">
-            <tal:val content="context/address" />, <tal:val content="context/zip_code|nothing" />
-    
-            <h3>Occupants</h3>
-            <tal:val content="context/adult_occupants" /> adults<br />
-            <tal:val content="context/children_occupants" /> children<br />
-            <tal:val content="context/elderly_occupants" /> elderly<br />
             
-            <tal:con condition="context/special_needs">
-                Special Needs: <tal:val content="context/special_needs" />
-            </tal:con>
+            <div class="info contacts left">
+                <h4>Contacts</h4>
+                <tal:val content="context/contact_1_name" />
+                <tal:val content="context/contact_1_number" /><br />
+                <tal:val content="context/contact_2_name" />
+                <tal:val content="context/contact_2_number" />
+            </div>
             
-            <tal:con condition="context/lessor">
-                Lessor: <tal:val content="context/lessor" />
-            </tal:con>
+            <div class="info occupants left">
+                <h3>Occupants</h3>
+                <tal:val content="context/adult_occupants" /> adults<br />
+                <tal:val content="context/children_occupants" /> children<br />
+                <tal:val content="context/elderly_occupants" /> elderly<br />
             
-            <h4>Contacts</h4>
-            <tal:val content="context/contact_1_name" />
-            <tal:val content="context/contact_1_number" /><br />
-            <tal:val content="context/contact_2_name" />
-            <tal:val content="context/contact_2_number" />
-    
-            <h3>Main Building</h3>
-            <tal:types repeat="property context/property_type">
-                <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
-            </tal:types>
-            <tal:val content="context/property_information" /><br />
-            <tal:val content="context/square_footage" />sq. ft.,
-            <tal:con condition="context/multi_level">Multi-Level</tal:con>,
-            <tal:con condition="context/basement">Basement</tal:con>
-            <tal:con condition="context/basement_exterior_entrance"> with exterior entrance</tal:con><br />
-            Built in <tal:val content="context/year_built" />
-            <tal:con condition="context/additions">, with additions</tal:con><br />
-            <tal:types repeat="property context/construction_type">
-                <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
-            </tal:types>
+                <tal:con condition="context/special_needs">
+                    Special Needs: <tal:val content="context/special_needs" />
+                </tal:con>
+                
+                <tal:con condition="context/lessor">
+                    Lessor: <tal:val content="context/lessor" />
+                </tal:con>
+            </div>
             
-            <tal:con condition="context/business">
-                Business information:
-                <tal:val content="context/business_information" />
-            </tal:con>
+            <div class="info dangers right">
+                
+                <h3>Special info:</h3>
+                <tal:val content="structure context/special_concerns_text/raw" />
+            </div>
             
-            <tal:garage condition="context/garage">
+            <div class="info shutoffs right">
+                <h3>Shutoffs</h3>
+                <tal:con condition="context/electrical_shut_off_location">
+                    Electrical: <tal:val content="context/electrical_shut_off_location" />
+                </tal:con>
+                <tal:con condition="context/gas_shut_off_valve">
+                    Gas: <tal:val content="context/gas_shut_off_valve_location" />
+                </tal:con>
+            </div>
+            
+            <hr />
+            
+            <div class="info mainbuilding left">
+                <h3>Main Building</h3>
+                <tal:val content="context/property_information" /><br />
+                <tal:val content="context/square_footage" />sq. ft.,
+                <tal:con condition="context/multi_level">Multi-Level</tal:con>,
+                <tal:con condition="context/basement">Basement</tal:con>
+                <tal:con condition="context/basement_exterior_entrance"> with exterior entrance</tal:con><br />
+                Built in <tal:val content="context/year_built" />
+                <tal:con condition="context/additions">, with additions</tal:con><br />
+                <tal:types repeat="property context/construction_type">
+                    <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+                </tal:types>
+            
+                <tal:con condition="context/business">
+                    Business information:
+                    <tal:val content="context/business_information" />
+                </tal:con>
+            </div>
+            
+            <div class="info garage left"
+                 tal:condition="context/garage">
                 <h3>Garage</h3>
                 <tal:con condition="context/garage_attached">Attached</tal:con>
                 <tal:con condition="not:context/garage_attached">Detached</tal:con><br />
@@ -73,7 +94,20 @@
                         <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
                     </tal:types>
                 </tal:con>
-            </tal:garage>
+            </div>
+            
+            <div class="info water right"
+                 tal:condition="context/water_supply">
+                <h3>Water Supply</h3>
+                <tal:types repeat="property context/water_supply_type">
+                    <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
+                </tal:types>
+                <tal:val content="context/water_supply_size" /> gallons<br />
+                <tal:con condition="context/water_supply_access">Access for fire trucks available</tal:con>
+                <tal:con condition="not:context/water_supply_access">Not accessible to fire trucks</tal:con>
+            </div>
+            
+            <hr />
     
             <h3>Safety</h3>
             <table class="plain">
@@ -95,25 +129,16 @@
             </tr>
             </table>
             
-            <tal:water condition="context/water_supply">
-                <h3>Water Supply</h3>
-                <tal:types repeat="property context/water_supply_type">
-                    <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
-                </tal:types>
-                <tal:val content="context/water_supply_size" /> gallons<br />
-                <tal:con condition="context/water_supply_access">Access for fire trucks available</tal:con>
-                <tal:con condition="not:context/water_supply_access">Not accessible to fire trucks</tal:con>
-            </tal:water>
             
             <h3>Additional Information</h3>
             <tal:val content="context/large_trucks_prohibited" />
-            <tal:val content="structure context/special_concerns_text/raw" />
             
             <p>Information provided by: <tal:val content="context/submitter" /></p>
         </dd>
     
         <dt id="fieldsetlegend-utilities">Utilities</dt>
         <dd id="fieldset-utilities">
+            Types of heat:
             <tal:types repeat="property context/type_of_heat">
                 <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
             </tal:types>
@@ -161,6 +186,45 @@
             LP Gas to buildings: <tal:val content="context/lp_gas_to_buildings" /><br />
             Secondary LP shutoff: <tal:val content="context/lp_tank_location_secondary" /><br />
             Secondary LP size: <tal:val content="context/lp_tank_size_secondary" /> gallons
+        </dd>
+        
+        <dt id="fieldsetlegend-images">Images</dt>
+        <dd id="fieldset-images">
+            
+            <tal:images
+                 tal:define="result python:here.atctListAlbum(images=1, folders=1, subimages=0, others=1);
+                             images result/images;
+                             albums result/folders;
+                             otherContents result/others;
+                             Batch python:modules['Products.CMFPlone'].Batch;
+                             b_start python:request.get('b_start', 0);
+                             kssClassesView context/@@kss_field_decorator_view;
+                             getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                             templateId template/getId;
+                             batch python:Batch(images, 12, int(b_start), orphan=1)">
+
+                    <tal:images tal:condition="batch" tal:repeat="image batch">
+                        <div class="photoAlbumEntry">
+                                    <a tal:define="id python:int(b_start)+int(repeat['image'].number()-1)"
+                                       tal:attributes="href string:${image/absolute_url}/view;
+                                                       title image/Description">
+                                        <span class="photoAlbumEntryWrapper">
+                                        <img src="" alt="" tal:replace="structure python:image.tag(scale='preview', title=image.Description(), alt='')" />
+                                        </span>
+                                    </a>
+                        </div>
+                    </tal:images>
+
+                <tal:listing condition="otherContents"
+                             define="folderContents otherContents">
+                    <metal:listing metal:use-macro="here/folder_listing/macros/listing">
+                        <metal:empty metal:fill-slot="no_items_in_listing"></metal:empty>
+                    </metal:listing>
+
+                </tal:listing>
+
+            </tal:images>
+            
         </dd>
     </dl>
     

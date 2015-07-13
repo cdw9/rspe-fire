@@ -8,3 +8,30 @@ body {
     padding: 1em;
 }
 
+hr {
+    clear: both;
+    display: block;
+    margin-bottom: 1em;
+}
+
+.info {
+    width: 47%;
+    background-color: #f1f1f1;
+    margin-bottom: 1em;
+    padding: 1em 1%;
+}
+.info.left {
+    float: left;
+    clear: left;
+}
+.info.right {
+    float: right;
+    clear: right;
+}
+
+.dangers {
+    background-color: #fdc4b5;
+}
+.shutoffs {
+    background-color: #f4f1c6;
+}
