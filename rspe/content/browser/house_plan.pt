@@ -13,9 +13,14 @@
     <metal:content-core define-macro="content-core">
     
     <h1>
-        <tal:title content="context/Title" /> - <tal:val content="context/zip_code|nothing" /><br />
+        <tal:title content="context/address" /> - <tal:val content="context/zip_code|nothing" /><br />
         (<tal:types repeat="property context/property_type"><tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma></tal:types>)
     </h1>
+    
+    <p class="discreet">
+        Last modified:
+        <tal:date content="context/modified" />
+    </p>
         
     
     <dl class="enableFormTabbing">
@@ -34,13 +39,15 @@
                 <h3>Occupants</h3>
                 <tal:val content="context/adult_occupants" /> adults<br />
                 <tal:val content="context/children_occupants" /> children<br />
-                <tal:val content="context/elderly_occupants" /> elderly<br />
+                <tal:val content="context/elderly_occupants" /> elderly
             
                 <tal:con condition="context/special_needs">
+                    <br />
                     Special Needs: <tal:val content="context/special_needs" />
                 </tal:con>
                 
                 <tal:con condition="context/lessor">
+                    <br />
                     Lessor: <tal:val content="context/lessor" />
                 </tal:con>
             </div>
