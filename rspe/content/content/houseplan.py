@@ -162,7 +162,7 @@ class IHousePlan(model.Schema):
         required=False,
         title=u"Basement",
     )
-    year_built = schema.Date(
+    built_year = schema.Int(
         description=u"Approximate year of the original construction",
         required=False,
         title=u"Year Built",

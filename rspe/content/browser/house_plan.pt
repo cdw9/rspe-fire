@@ -34,8 +34,8 @@
                 <div class="info occupants">
                     <h3>Occupants</h3>
                     <tal:val content="context/adult_occupants" /> adults<br />
-                    <tal:val content="context/children_occupants" /> children<br />
-                    <tal:val content="context/elderly_occupants" /> elderly
+                    <tal:val content="python:context.children_occupants or '0'" /> children<br />
+                    <tal:val content="python:context.elderly_occupants or '0'" /> elderly
             
                     <tal:con condition="context/special_needs">
                         <br />
@@ -50,7 +50,8 @@
             </div>
             
             <div class="right">
-                <div class="info dangers">
+                <div class="info dangers"
+                     tal:condition="context/special_concerns_text">
                 
                     <h3>Special info:</h3>
                     <tal:val content="structure context/special_concerns_text/raw" />
@@ -59,7 +60,7 @@
                 <div class="info shutoffs">
                     <h3>Shutoffs</h3>
                     <tal:con condition="context/electrical_shut_off_location">
-                        Electrical: <tal:val content="context/electrical_shut_off_location" />
+                        Electrical: <tal:val content="context/electrical_shut_off_location" /><br />
                     </tal:con>
                     <tal:con condition="context/gas_shut_off_valve">
                         Gas: <tal:val content="context/gas_shut_off_valve_location" />
@@ -77,8 +78,10 @@
                     <tal:con condition="context/multi_level">Multi-Level</tal:con>,
                     <tal:con condition="context/basement">Basement</tal:con>
                     <tal:con condition="context/basement_exterior_entrance"> with exterior entrance</tal:con><br />
-                    Built in <tal:val content="context/year_built" />
-                    <tal:con condition="context/additions">, with additions</tal:con><br />
+                    <tal:con condition="context/built_year">Built in 
+                        <tal:val content="context/built_year" /><tal:con condition="context/additions">,
+                    </tal:con>
+                     with additions</tal:con><br />
                     <tal:types repeat="property context/construction_type">
                         <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
                     </tal:types>
@@ -144,7 +147,7 @@
             </div>
             
             <div class="right">
-                <div class="info">
+                <div class="info" tal:condition="context/large_trucks_prohibited">
                     <h3>Additional Information</h3>
                     <tal:val content="context/large_trucks_prohibited" />
                 </div>
@@ -200,12 +203,12 @@
                     </tal:con>
                 </div>
             
-                <div class="info">
+                <div class="info" tal:condition="context/lp_tank_location">
                     <h3>LP</h3>
                     Tank location: <tal:val content="context/lp_tank_location" />
                 </div>
             
-                <div class="info">
+                <div class="info" tal:condition="context/backup_power_storage">
                     <h3>Backup</h3>
                     <tal:val content="context/backup_power_storage" />
                 </div>
