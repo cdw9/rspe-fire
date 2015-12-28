@@ -18,7 +18,6 @@
  <property name="default_view">house_plan</property>
  <property name="view_methods">
   <element value="house_plan"/>
-  <element value="view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>

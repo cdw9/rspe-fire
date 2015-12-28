@@ -93,6 +93,8 @@
         </rules>
         
         <replace css:theme="#portal-footer" css:content="#portal-footer"/>
+        
+        <drop css:content=".documentAuthor" />
     </rules>
 
 </rules>

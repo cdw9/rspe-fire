@@ -69,20 +69,19 @@
       media="print" rel="stylesheet" rendering="link"
       cacheable="True" compression="safe" cookable="True"
       enabled="1" expression="" applyPrefix="False" />
+
+   <stylesheet title=""
+      id="++theme++rspe.theme/static/font-awesome.min.css"
+      media="" rel="stylesheet" rendering="import"
+      cacheable="True" compression="safe" cookable="True"
+      enabled="1" expression="" applyPrefix="True" />
   
     <stylesheet title=""
        id="++theme++rspe.theme/static/main.css"
-       media="screen" rel="stylesheet" rendering="link"
+       media="" rel="stylesheet" rendering="link"
        cacheable="True" compression="safe" cookable="True"
        enabled="1" expression="request/HTTP_X_THEME_ENABLED"
        applyPrefix="True" insert-after="*"/>
-       
-   <stylesheet title=""
-      id="++theme++rspe.theme/static/responsive.css"
-      media="" rel="stylesheet" rendering="link"
-      cacheable="True" compression="safe" cookable="True"
-      enabled="1" expression="request/HTTP_X_THEME_ENABLED"
-      applyPrefix="True" insert-after="*"/>
    
    <stylesheet id="ploneCustom.css" insert-after="*"/>
  
