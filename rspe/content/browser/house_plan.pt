@@ -79,9 +79,8 @@
                     <tal:con condition="context/basement">Basement</tal:con>
                     <tal:con condition="context/basement_exterior_entrance"> with exterior entrance</tal:con><br />
                     <tal:con condition="context/built_year">Built in 
-                        <tal:val content="context/built_year" /><tal:con condition="context/additions">,
-                    </tal:con>
-                     with additions</tal:con><br />
+                        <tal:val content="context/built_year" />
+                    </tal:con><tal:con condition="context/additions">, with additions</tal:con><br />
                     <tal:types repeat="property context/construction_type">
                         <tal:type content="property" /><tal:comma condition="not:repeat/property/end">, </tal:comma>
                     </tal:types>
